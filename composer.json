@@ -1,0 +1,15 @@
+{
+    "name": "ednierglinmartins/oficina-puro",
+    "autoload": {
+        "psr-4": {
+            "Ednierglinmartins\\OficinaPuro\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "EdnieRoglin",
+            "email": "roglinednie@gmail.com"
+        }
+    ],
+    "require": {}
+}
