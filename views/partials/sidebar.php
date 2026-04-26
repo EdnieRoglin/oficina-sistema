@@ -17,6 +17,7 @@
     <?php
     $menus = [
         ['url' => 'dashboard.php', 'label' => 'Dashboard', 'icon' => 'dashboard'],
+        ['url' => 'orcamento.php', 'label' => 'orcamento', 'icon' => 'request_quote'],
         ['url' => 'clientes.php',  'label' => 'Clientes',  'icon' => 'person'],
         ['url' => 'servicos.php',  'label' => 'Serviços',  'icon' => 'build'],
         ['url' => 'pecas.php',     'label' => 'Peças',     'icon' => 'inventory_2'],
