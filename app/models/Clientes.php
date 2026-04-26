@@ -2,14 +2,15 @@
     class Clientes {
         private $id;
         private string $nome;
-        private float $cpf;
+        private float $tipoPessoa;
+        private string $cpfCnpj;
         private float $telefone;
         private string $email;
         private $endereco;
 
-        public function __construct(string $nome, float $cpf, float $telefone, string $email, $endereco){
+        public function __construct(string $nome, float $tipoPessoa, float $telefone, string $email, $endereco){
             $this->nome = $nome;
-            $this->cpf = $cpf;
+            $this->tipoPessoa = $tipoPessoa;
             $this->telefone = $telefone;
             $this->email = $email;
             $this->endereco = $endereco;
@@ -19,8 +20,8 @@
             return $this->nome;
         }
 
-        public function getCpf(){
-            return $this->cpf;
+        public function getTipoPessoa(){
+            return $this->tipoPessoa;
         }
 
         public function gettelefone(){
@@ -39,8 +40,8 @@
             $this->nome = $nome;
         }
 
-        public function setCpf($cpf){
-            $this->cpf = $cpf;
+        public function setTipoPessoa($tipoPessoa){
+            $this->tipoPessoa = $tipoPessoa;
         }
 
         public function settelefone($telefone){

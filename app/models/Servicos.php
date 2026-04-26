@@ -2,13 +2,13 @@
     class Servicos{
         private $id;
         private string $nomeServico;
-        private string $categoria;
+        private int $categoria_id;
         private float $preco;
         private string $observacao;
 
-        public function __construct(string $nomeServico, string $categoria, float $preco, string $observacao){
+        public function __construct(string $nomeServico, int $categoria_id, float $preco, string $observacao){
             $this->nomeServico = $nomeServico;
-            $this->categoria = $categoria;
+            $this->categoria_id = $categoria_id;
             $this->preco = $preco;
             $this->observacao = $observacao;
         }
@@ -17,8 +17,8 @@
             return $this->nomeServico;
         }
 
-        public function getCategoria(){
-            return $this->categoria;
+        public function getCategoriaId(){
+            return $this->categoria_id;
         }
 
         public function getPreco(){
@@ -33,8 +33,8 @@
             $this->nomeServico = $nomeServico;
         }
 
-        public function setCategoria($categoria){
-            $this->categoria = $categoria;
+        public function setCategoriaId($categoria_id){
+            $this->categoria_id = $categoria_id;
          }
 
         public function setPreco($preco){

@@ -5,7 +5,7 @@
     <div class="bg-surface-container-lowest w-full max-w-2xl rounded-xl shadow-2xl flex flex-col overflow-hidden animate-in fade-in zoom-in duration-300">
 
         <!-- Modal Header -->
-        <header class="flex items-center justify-between px-6 py-5 bg-surface-container-low border-b border-outline-variant/20">
+        <header class="flex items-center justify-between px-8 py-6 border-b border-outline-variant/20">
 
             <div class="flex items-center gap-3">
                 <div class="bg-primary-container/20 p-2 rounded-lg">

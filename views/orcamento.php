@@ -285,7 +285,10 @@
         </div>
 
         <div class="p-4 bg-surface-container-lowest flex justify-center">
-            <button class="flex items-center gap-2 px-6 py-3 border-2 border-dashed border-primary-container text-primary-container hover:bg-primary-container/10 rounded-xl transition-all group">
+            <button 
+	            hx-get="partials/modal_orcamento.php"
+                hx-target="#modal-container"
+	                class="flex items-center gap-2 px-6 py-3 border-2 border-dashed border-primary-container text-primary-container hover:bg-primary-container/10 rounded-xl transition-all group">
                 <span class="material-symbols-outlined group-hover:scale-110 transition-transform">
                     add_circle
                 </span>
@@ -362,7 +365,10 @@
             </div>
 
             <div class="flex flex-col gap-3">
-                <button class="w-full flex items-center justify-center gap-2 py-4 bg-primary-container hover:bg-surface-tint text-on-primary-fixed font-black rounded-xl shadow-lg shadow-primary-container/20 transition-all active:scale-[0.98]">
+                <button 
+	                hx-get="partials/modal_impressao.php"
+	                hx-target="#modal-container"
+	                    class="w-full flex items-center justify-center gap-2 py-4 bg-primary-container hover:bg-surface-tint text-on-primary-fixed font-black rounded-xl shadow-lg shadow-primary-container/20 transition-all active:scale-[0.98]">
                     <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">
                         check_circle
                     </span>
@@ -373,31 +379,9 @@
         </div>
     </div>
 
-    <!-- Section 4: Ações Bar -->
-    <footer class="flex items-center justify-between gap-4 py-6 border-t border-outline-variant/20">
-
-        <div class="flex items-center gap-4">
-
-            <button class="flex items-center gap-2 px-6 py-3 bg-secondary-container text-on-secondary-container font-bold rounded-xl hover:bg-secondary-fixed transition-colors">
-                <span class="material-symbols-outlined">picture_as_pdf</span>
-                Gerar PDF
-            </button>
-
-            <button class="flex items-center gap-2 px-6 py-3 bg-surface-container-high text-on-surface-variant font-bold rounded-xl hover:bg-outline-variant/20 transition-colors">
-                <span class="material-symbols-outlined">share</span>
-                WhatsApp
-            </button>
-
-        </div>
-
-        <button class="flex items-center gap-2 px-6 py-3 text-error font-bold hover:bg-error-container rounded-xl transition-colors">
-            <span class="material-symbols-outlined">cancel</span>
-            Cancelar e Sair
-        </button>
-
-    </footer>
 </div>
 </main>
 </div>
+    <div id="modal-container"></div>
 </body>
 </html>

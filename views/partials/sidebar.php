@@ -22,6 +22,7 @@
         ['url' => 'servicos.php',  'label' => 'Serviços',  'icon' => 'build'],
         ['url' => 'pecas.php',     'label' => 'Peças',     'icon' => 'inventory_2'],
         ['url' => 'veiculos.php',  'label' => 'Veículos',  'icon' => 'directions_car'],
+        ['url' => 'categorias.php', 'label' => 'Categorias', 'icon' => 'category'],
         ['url' => 'historico.php', 'label' => 'Histórico', 'icon' => 'history'],
     ];
 
@@ -29,7 +30,7 @@
         $isActive = ($pagina_atual == $menu['url']);
         $classes = $isActive ? "bg-amber-100 text-amber-700" : "text-slate-500 hover:bg-slate-200";
     ?>
-        <a hx-get="/oficina-app/views/<?php echo $menu['url']; ?>" 
+        <a hx-get="/oficina-sistema/views/<?php echo $menu['url']; ?>" 
            hx-target="main" 
            hx-select="main > *"
            hx-push-url="true"

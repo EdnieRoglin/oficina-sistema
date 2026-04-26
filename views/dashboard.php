@@ -4,187 +4,244 @@
 
 <?php require __DIR__ . '/partials/sidebar.php'; ?>
 
-<!-- Page Content -->
+<!-- Main Content Canvas -->
 <div class="pt-20 px-8 pb-12 w-full max-w-7xl mx-auto">
-<!-- Header Section with Bento Grid Influence -->
-<section class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
-<div>
-<h2 class="text-4xl font-headline font-extrabold tracking-tight text-on-background mb-2">Dashboard Operacional</h2>
-<p class="text-on-surface-variant max-w-md">Gerencie orçamentos e fluxo de trabalho com eficiência.</p>
-</div>
-<button 
-    hx-get="partials/modal_orcamento.php" 
-    hx-target="#modal-container"
-    class="bg-primary-container hover:bg-amber-500 text-on-primary-container font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-lg shadow-amber-500/10 transition-all active:scale-95 group">
-    
-    <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">add_circle</span>
-    <span class="font-headline tracking-wide uppercase text-sm">Novo Orçamento</span>
-</button>
-</section>
-<!-- Stats Grid -->
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10">
-<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-amber-500">
-<p class="text-label-md uppercase tracking-widest text-on-surface-variant text-xs font-semibold mb-2">Faturamento Hoje</p>
-<div class="flex items-baseline gap-2">
-<span class="text-3xl font-headline font-extrabold">R$ 12.450</span>
-<span class="text-emerald-600 text-xs font-bold bg-emerald-50 px-2 py-0.5 rounded">+12%</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-tertiary">
-<p class="text-label-md uppercase tracking-widest text-on-surface-variant text-xs font-semibold mb-2">Orçamentos Pendentes</p>
-<div class="flex items-baseline gap-2">
-<span class="text-3xl font-headline font-extrabold text-on-surface">08</span>
-<span class="text-on-surface-variant text-xs font-medium">Aguardando aprovação</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm border-l-4 border-slate-400">
-<p class="text-label-md uppercase tracking-widest text-on-surface-variant text-xs font-semibold mb-2">Ordens em Execução</p>
-<div class="flex items-baseline gap-2">
-<span class="text-3xl font-headline font-extrabold text-on-surface">14</span>
-<span class="text-on-surface-variant text-xs font-medium">Capacidade: 85%</span>
-</div>
-</div>
-</div>
-<!-- List Section -->
-<div class="bg-surface-container-lowest rounded-xl shadow-sm overflow-hidden">
-<div class="px-6 py-5 border-b border-surface-container-high flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-<div class="flex items-center gap-3">
-<span class="material-symbols-outlined text-amber-500" data-icon="list_alt">list_alt</span>
-<h3 class="font-headline font-bold text-lg">Orçamentos Recentes</h3>
-</div>
-<!-- Quick Filters -->
-<div class="flex bg-surface-container-low p-1 rounded-lg">
-<button class="px-4 py-1.5 text-xs font-semibold rounded-md bg-white shadow-sm text-on-surface">Hoje</button>
-<button class="px-4 py-1.5 text-xs font-semibold rounded-md text-on-surface-variant hover:text-on-surface transition-colors">Semana</button>
-<button class="px-4 py-1.5 text-xs font-semibold rounded-md text-on-surface-variant hover:text-on-surface transition-colors">Mês</button>
-</div>
-</div>
-<div class="overflow-x-auto">
-<table class="w-full text-left border-separate border-spacing-0">
-<thead>
-<tr class="bg-surface-container-low">
-<th class="px-6 py-4 text-[10px] font-headline uppercase tracking-widest font-bold text-on-surface-variant">Cliente / Veículo</th>
-<th class="px-6 py-4 text-[10px] font-headline uppercase tracking-widest font-bold text-on-surface-variant">Data</th>
-<th class="px-6 py-4 text-[10px] font-headline uppercase tracking-widest font-bold text-on-surface-variant text-right">Valor Total</th>
-<th class="px-6 py-4 text-[10px] font-headline uppercase tracking-widest font-bold text-on-surface-variant">Status</th>
-<th class="px-6 py-4 text-[10px] font-headline uppercase tracking-widest font-bold text-on-surface-variant"></th>
-</tr>
-</thead>
-<tbody class="divide-y divide-surface-container-high">
-<!-- Row 1 -->
-<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
-<td class="px-6 py-5">
-<div class="flex flex-col">
-<span class="font-headline font-bold text-on-surface">Ricardo Oliveira</span>
-<span class="text-xs text-on-surface-variant">Toyota Corolla - HGT-2244</span>
-</div>
-</td>
-<td class="px-6 py-5 text-sm text-on-surface">14/10/2023 09:45</td>
-<td class="px-6 py-5 text-right font-headline font-bold text-on-surface">R$ 2.450,00</td>
-<td class="px-6 py-5">
-<span class="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-[10px] font-bold uppercase tracking-wider">Aguardando</span>
-</td>
-<td class="px-6 py-5 text-right">
-<button class="text-slate-300 group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
-</button>
-</td>
-</tr>
-<!-- Row 2 -->
-<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
-<td class="px-6 py-5">
-<div class="flex flex-col">
-<span class="font-headline font-bold text-on-surface">Beatriz Mendes</span>
-<span class="text-xs text-on-surface-variant">Jeep Compass - BRA-2S12</span>
-</div>
-</td>
-<td class="px-6 py-5 text-sm text-on-surface">13/10/2023 16:20</td>
-<td class="px-6 py-5 text-right font-headline font-bold text-on-surface">R$ 840,00</td>
-<td class="px-6 py-5">
-<span class="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold uppercase tracking-wider">Aprovado</span>
-</td>
-<td class="px-6 py-5 text-right">
-<button class="text-slate-300 group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
-</button>
-</td>
-</tr>
-<!-- Row 3 -->
-<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
-<td class="px-6 py-5">
-<div class="flex flex-col">
-<span class="font-headline font-bold text-on-surface">Oficina TransPrime</span>
-<span class="text-xs text-on-surface-variant">MB Sprinter 415 - OPA-9900</span>
-</div>
-</td>
-<td class="px-6 py-5 text-sm text-on-surface">13/10/2023 11:05</td>
-<td class="px-6 py-5 text-right font-headline font-bold text-on-surface">R$ 14.200,00</td>
-<td class="px-6 py-5">
-<span class="inline-flex items-center px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-[10px] font-bold uppercase tracking-wider">Em Execução</span>
-</td>
-<td class="px-6 py-5 text-right">
-<button class="text-slate-300 group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
-</button>
-</td>
-</tr>
-<!-- Row 4 -->
-<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
-<td class="px-6 py-5">
-<div class="flex flex-col">
-<span class="font-headline font-bold text-on-surface">Carlos Eduardo</span>
-<span class="text-xs text-on-surface-variant">Honda Civic - KJU-1122</span>
-</div>
-</td>
-<td class="px-6 py-5 text-sm text-on-surface">12/10/2023 15:40</td>
-<td class="px-6 py-5 text-right font-headline font-bold text-on-surface">R$ 3.120,50</td>
-<td class="px-6 py-5">
-<span class="inline-flex items-center px-3 py-1 rounded-full bg-error-container text-error text-[10px] font-bold uppercase tracking-wider">Cancelado</span>
-</td>
-<td class="px-6 py-5 text-right">
-<button class="text-slate-300 group-hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
-</button>
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
-<span class="text-xs text-on-surface-variant font-medium">Mostrando 4 de 128 orçamentos</span>
-<div class="flex gap-2">
-<button class="p-1.5 rounded bg-white border border-surface-container-high text-on-surface-variant hover:bg-white active:scale-95 duration-150">
-<span class="material-symbols-outlined text-sm" data-icon="arrow_back">arrow_back</span>
-</button>
-<button class="p-1.5 rounded bg-white border border-surface-container-high text-on-surface-variant hover:bg-white active:scale-95 duration-150">
-<span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
-</button>
-</div>
-</div>
-</div>
 
-<!-- BottomNavBar (Authority: JSON - Mobile Only) -->
-<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-white/80 backdrop-blur-xl border-t border-slate-200/20 z-50 flex justify-around items-center py-2 px-4 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]">
-<a class="flex flex-col items-center gap-1 p-2 text-amber-600" href="#">
-<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
-<span class="text-[10px] font-bold font-manrope">Dash</span>
-</a>
-<a class="flex flex-col items-center gap-1 p-2 text-slate-400" href="#">
-<span class="material-symbols-outlined" data-icon="person">person</span>
-<span class="text-[10px] font-bold font-manrope">Clientes</span>
-</a>
-<a class="flex flex-col items-center gap-1 p-2 text-slate-400" href="#">
-<span class="material-symbols-outlined" data-icon="history">history</span>
-<span class="text-[10px] font-bold font-manrope">Histórico</span>
-</a>
-<a class="flex flex-col items-center gap-1 p-2 text-slate-400" href="#">
-<span class="material-symbols-outlined" data-icon="settings">settings</span>
-<span class="text-[10px] font-bold font-manrope">Ajustes</span>
-</a>
-</nav>
-<!-- Floating Action Button (Mobile Contextual) -->
-<button class="md:hidden fixed bottom-24 right-6 w-14 h-14 bg-primary-container text-on-primary-container rounded-full shadow-2xl flex items-center justify-center z-40 active:scale-90 transition-transform">
-<span class="material-symbols-outlined" data-icon="add">add</span>
+<div class="p-6 md:p-8 lg:p-10 max-w-7xl mx-auto w-full flex flex-col gap-8">
+<!-- Header Section: Summary Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="flex justify-between items-start">
+<p class="text-sm font-semibold text-on-surface-variant font-body">Orçamentos do mês</p>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">description</span>
+</div>
+</div>
+<div>
+<h3 class="text-3xl font-bold font-headline text-on-background">142</h3>
+<div class="flex items-center gap-1 mt-2 text-sm font-medium">
+<span class="material-symbols-outlined text-green-600 text-[16px] font-bold">trending_up</span>
+<span class="text-green-600">+12%</span>
+<span class="text-on-surface-variant text-xs ml-1">vs last month</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-error opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="flex justify-between items-start">
+<p class="text-sm font-semibold text-on-surface-variant font-body">Ordens em aberto</p>
+<div class="w-8 h-8 rounded-full bg-error-container flex items-center justify-center text-on-error-container">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">build</span>
+</div>
+</div>
+<div>
+<h3 class="text-3xl font-bold font-headline text-on-background">38</h3>
+<div class="flex items-center gap-1 mt-2 text-sm font-medium">
+<span class="material-symbols-outlined text-error text-[16px] font-bold">trending_down</span>
+<span class="text-error">-5</span>
+<span class="text-on-surface-variant text-xs ml-1">needs attention</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-tertiary-container opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="flex justify-between items-start">
+<p class="text-sm font-semibold text-on-surface-variant font-body">Faturamento do mês</p>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">payments</span>
+</div>
+</div>
+<div>
+<h3 class="text-3xl font-bold font-headline text-on-background">R$ 84.5k</h3>
+<div class="flex items-center gap-1 mt-2 text-sm font-medium">
+<span class="material-symbols-outlined text-green-600 text-[16px] font-bold">trending_up</span>
+<span class="text-green-600">+8.4%</span>
+<span class="text-on-surface-variant text-xs ml-1">vs target</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col gap-4 relative overflow-hidden group">
+<div class="absolute top-0 left-0 w-1 h-full bg-primary-container opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+<div class="flex justify-between items-start">
+<p class="text-sm font-semibold text-on-surface-variant font-body">Ticket médio</p>
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">receipt_long</span>
+</div>
+</div>
+<div>
+<h3 class="text-3xl font-bold font-headline text-on-background">R$ 1.250</h3>
+<div class="flex items-center gap-1 mt-2 text-sm font-medium">
+<span class="material-symbols-outlined text-slate-500 text-[16px] font-bold">trending_flat</span>
+<span class="text-slate-500">0%</span>
+<span class="text-on-surface-variant text-xs ml-1">steady</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Layout: Bento Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Large Chart Column (Span 2) -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<!-- Chart 1: Faturamento por mês -->
+<div class="bg-surface-container-lowest rounded-xl p-6 flex flex-col h-[400px]">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold font-headline text-on-background">Faturamento por mês</h3>
+<button class="text-on-surface-variant hover:text-primary-container transition-colors flex items-center gap-1 text-sm font-medium bg-surface-container-low px-3 py-1.5 rounded-full">
+                                2024
+                                <span class="material-symbols-outlined text-sm">expand_more</span>
 </button>
-<div id="modal-container"></div>
+</div>
+<!-- Pseudo-Chart Area (CSS Only) -->
+<div class="flex-1 flex items-end justify-between gap-2 px-2 pb-6 relative">
+<!-- Y-axis guidelines -->
+<div class="absolute inset-0 flex flex-col justify-between pb-6 pointer-events-none opacity-20 z-0">
+<div class="border-b border-outline-variant w-full h-0"></div>
+<div class="border-b border-outline-variant w-full h-0"></div>
+<div class="border-b border-outline-variant w-full h-0"></div>
+<div class="border-b border-outline-variant w-full h-0"></div>
+</div>
+<!-- Bars -->
+<div class="w-full bg-surface-container hover:bg-primary-fixed-dim transition-colors rounded-t-sm h-[40%] relative group z-10">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">R$ 42k</div>
+</div>
+<div class="w-full bg-surface-container hover:bg-primary-fixed-dim transition-colors rounded-t-sm h-[60%] relative group z-10">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">R$ 60k</div>
+</div>
+<div class="w-full bg-surface-container hover:bg-primary-fixed-dim transition-colors rounded-t-sm h-[45%] relative group z-10">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">R$ 45k</div>
+</div>
+<div class="w-full bg-surface-container hover:bg-primary-fixed-dim transition-colors rounded-t-sm h-[80%] relative group z-10">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">R$ 80k</div>
+</div>
+<div class="w-full bg-surface-container hover:bg-primary-fixed-dim transition-colors rounded-t-sm h-[75%] relative group z-10">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">R$ 75k</div>
+</div>
+<div class="w-full bg-primary-container rounded-t-sm h-[95%] relative group shadow-[0_0_15px_rgba(255,166,0,0.3)] z-10">
+<div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity">R$ 84.5k</div>
+</div>
+<!-- X-axis Labels -->
+<div class="absolute bottom-0 w-full flex justify-between text-xs font-medium text-on-surface-variant px-2">
+<span>Jan</span>
+<span>Fev</span>
+<span>Mar</span>
+<span>Abr</span>
+<span>Mai</span>
+<span class="font-bold text-primary-container">Jun</span>
+</div>
+</div>
+</div>
+<!-- Chart 2: Serviços/Peças mais vendidas -->
+<div class="bg-surface-container-lowest rounded-xl p-6">
+<div class="flex justify-between items-center mb-6">
+<h3 class="text-lg font-bold font-headline text-on-background">Serviços/Peças mais vendidas</h3>
+<button class="text-sm font-semibold text-primary-container hover:text-primary transition-colors">View All</button>
+</div>
+<div class="flex flex-col gap-4">
+<!-- List Item 1 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors group cursor-default">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:bg-primary-fixed group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-xl">oil_barrel</span>
+</div>
+<div>
+<p class="font-semibold text-sm text-on-background">Troca de Óleo Sintético</p>
+<p class="text-xs text-on-surface-variant">Serviço • 124 executados</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-sm text-on-background">R$ 38.440</p>
+<p class="text-xs text-green-600 font-medium">18% of rev</p>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors group cursor-default">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:bg-primary-fixed group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-xl">settings</span>
+</div>
+<div>
+<p class="font-semibold text-sm text-on-background">Pastilha de Freio Dianteira</p>
+<p class="text-xs text-on-surface-variant">Peça • 86 vendidas</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-sm text-on-background">R$ 21.500</p>
+<p class="text-xs text-slate-500 font-medium">10% of rev</p>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="flex items-center justify-between p-3 rounded-lg hover:bg-surface-container-high transition-colors group cursor-default">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-on-surface-variant group-hover:bg-primary-fixed group-hover:text-primary-container transition-colors">
+<span class="material-symbols-outlined text-xl">plumbing</span>
+</div>
+<div>
+<p class="font-semibold text-sm text-on-background">Alinhamento e Balanceamento</p>
+<p class="text-xs text-on-surface-variant">Serviço • 92 executados</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-bold text-sm text-on-background">R$ 13.800</p>
+<p class="text-xs text-slate-500 font-medium">6% of rev</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Intelligent Alerts -->
+<div class="bg-surface-container-low rounded-xl p-6 border border-outline-variant/20 flex flex-col h-full shadow-sm">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">lightbulb</span>
+<h3 class="text-lg font-bold font-headline text-on-background">Alertas Inteligentes</h3>
+</div>
+<div class="flex flex-col gap-4 flex-1">
+<!-- Alert 1: Urgent -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-error shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-0.5">warning</span>
+<div>
+<h4 class="font-semibold text-sm text-on-background mb-1">Orçamentos parados há +7 dias</h4>
+<p class="text-xs text-on-surface-variant mb-3 leading-relaxed">Existem 12 orçamentos de alto valor aguardando aprovação. Sugestão: Enviar lembrete via WhatsApp.</p>
+<button class="text-xs font-bold text-error uppercase tracking-wider hover:bg-error-container px-2 py-1 rounded transition-colors -ml-2">Revisar Lista</button>
+</div>
+</div>
+</div>
+<!-- Alert 2: Inventory -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-primary-container shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container mt-0.5">inventory</span>
+<div>
+<h4 class="font-semibold text-sm text-on-background mb-1">Peças com estoque baixo</h4>
+<p class="text-xs text-on-surface-variant mb-3 leading-relaxed">Filtro de óleo (Mod: VW001) com apenas 3 unidades restantes. Média de uso semanal é 8.</p>
+<button class="text-xs font-bold text-primary-container uppercase tracking-wider hover:bg-primary-fixed-dim/20 px-2 py-1 rounded transition-colors -ml-2">Criar Pedido</button>
+</div>
+</div>
+</div>
+<!-- Alert 3: CRM / Info -->
+<div class="bg-surface-container-lowest p-4 rounded-xl border-l-4 border-tertiary shadow-sm hover:shadow-md transition-shadow cursor-pointer">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-tertiary mt-0.5">group_add</span>
+<div>
+<h4 class="font-semibold text-sm text-on-background mb-1">Clientes que mais retornam</h4>
+<p class="text-xs text-on-surface-variant mb-3 leading-relaxed">3 clientes VIP agendaram serviços preventivos esta semana. Prepare o pacote premium.</p>
+<button class="text-xs font-bold text-tertiary uppercase tracking-wider hover:bg-tertiary-container/30 px-2 py-1 rounded transition-colors -ml-2">Ver Perfil</button>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 pt-4 border-t border-outline-variant/20 text-center">
+<p class="text-xs text-on-surface-variant flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+                             Powered by Predictive Analytics
+                         </p>
+</div>
+</div>
+</div>
+</div>
+</main>
 </body></html>
