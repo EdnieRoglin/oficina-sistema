@@ -1,5 +1,7 @@
 <?php 
-    class Servicos{
+namespace App\Models\Entity;
+
+    class ServicoEntity{
         private $id;
         private string $nomeServico;
         private int $categoria_id;

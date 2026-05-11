@@ -777,4 +777,15 @@
       --tw-scale-z: 1;
     }
   }
+  .kanban-ghost {
+    opacity: 0.4;
+}
+
+.kanban-chosen {
+    transform: rotate(2deg);
+}
+
+.kanban-drag {
+    cursor: grabbing;
+}
 }

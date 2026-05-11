@@ -2,9 +2,9 @@
     class Clientes {
         private $id;
         private string $nome;
-        private float $tipoPessoa;
+        private string $tipoPessoa;
         private string $cpfCnpj;
-        private float $telefone;
+        private string $telefone;
         private string $email;
         private $endereco;
 
@@ -24,7 +24,11 @@
             return $this->tipoPessoa;
         }
 
-        public function gettelefone(){
+        public function getCpfCpnj(){
+            return $this->cpfCnpj;
+        }
+
+        public function getTelefone(){
             return $this->telefone;
         }
 
@@ -44,7 +48,11 @@
             $this->tipoPessoa = $tipoPessoa;
         }
 
-        public function settelefone($telefone){
+        public function setCpfCnpj($cpfCnpj){
+            $this->cpfCnpj = $cpfCnpj;
+        }
+
+        public function setTelefone($telefone){
             $this->telefone = $telefone;
         }
 

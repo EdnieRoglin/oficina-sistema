@@ -1,15 +1,9 @@
 {
-    "name": "ednierglinmartins/oficina-puro",
+    "name": "oficina/sistema",
     "autoload": {
         "psr-4": {
-            "Ednierglinmartins\\OficinaPuro\\": "src/"
+            "App\\": "app/"
         }
     },
-    "authors": [
-        {
-            "name": "EdnieRoglin",
-            "email": "roglinednie@gmail.com"
-        }
-    ],
     "require": {}
 }

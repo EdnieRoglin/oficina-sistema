@@ -1,9 +1,14 @@
-<?php $title = 'servicos'; ?>
+<?php
+require __DIR__ . '/../layouts/header.php';
+require __DIR__ . '/../layouts/sidebar.php';
 
-<?php include 'partials/header.php'; ?>
-<?php require __DIR__ . '/partials/sidebar.php'; ?>
 
-<!-- Page Content Canvas -->
+?>
+
+<div class="pt-20 px-8 pb-12 w-full max-w-7xl mx-auto">
+
+    <!-- TODO O SEU HTML BONITO CONTINUA AQUI -->
+    <!-- Page Content Canvas -->
 <div class="pt-20 px-8 pb-12 w-full max-w-7xl mx-auto">
 
     <!-- Bento Header Section -->
@@ -18,8 +23,6 @@
         </div>
 
         <button
-            hx-get="partials/modal_servicos.php"
-            hx-target="#modal-container"
             class="bg-primary-container hover:bg-amber-500 text-on-primary-container font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-lg shadow-amber-500/10 transition-all active:scale-95 group"
         >
             <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">
@@ -108,32 +111,34 @@
 
                 <tbody class="divide-y divide-outline-variant/10">
                     <!-- (linhas mantidas exatamente como enviadas, apenas formatadas) -->
-                    <!-- Service Row 3 -->
+            <?php foreach($servicos as $servico): ?>
+
+<!-- Service Row 2 -->
 <tr class="hover:bg-amber-100/30 transition-colors group">
 <td class="px-6 py-5">
 <div class="flex items-center gap-3">
 <div class="w-8 h-8 rounded bg-surface-container-high flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-lg" data-icon="ac_unit">ac_unit</span>
+<span class="material-symbols-outlined text-lg" data-icon="bolt">bolt</span>
 </div>
 <div>
-<p class="text-on-surface font-semibold text-sm">Higienização Ar Condic.</p>
-<p class="text-on-surface-variant text-[10px] uppercase font-label">Cod: SERV-019</p>
+    <p class="text-on-surface font-semibold text-sm"><?= htmlspecialchars($servico['nome']) ?></p>
+    <p class="text-on-surface-variant text-[10px] uppercase font-label">Cod: SERV-042</p>
 </div>
 </div>
 </td>
 <td class="px-6 py-5">
-<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-bold uppercase tracking-tight">Climatização</span>
+    <span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold uppercase tracking-tight">Elétrica</span>
 </td>
 <td class="px-6 py-5">
-<span class="font-headline font-bold text-on-surface">R$ 180,00</span>
+    <span class="font-headline font-bold text-on-surface">R$ <?= number_format($servico['preco'], 2, ',', '.') ?></span>
 </td>
 <td class="px-6 py-5">
-<div class="flex justify-center">
-<label class="relative inline-flex items-center cursor-pointer">
-<input class="sr-only peer" type="checkbox"/>
-<div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
-</label>
-</div>
+    <div class="flex justify-center">
+        <label class="relative inline-flex items-center cursor-pointer">
+            <input checked="" class="sr-only peer" type="checkbox"/>
+            <div class="w-11 h-6 bg-surface-container-high rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-container"></div>
+        </label>
+    </div>
 </td>
 <td class="px-6 py-5 text-right">
 <button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
@@ -144,6 +149,9 @@
                 </tbody>
             </table>
         </div>
+        
+
+        <?php endforeach; ?>
 
         <!-- Pagination -->
         <div class="p-4 bg-surface-container-low/20 border-t border-outline-variant/10 flex items-center justify-between">
@@ -162,5 +170,8 @@
 </div>
 
 <div id="modal-container"></div>
-</body>
-</html>
+
+    
+
+</div>
+

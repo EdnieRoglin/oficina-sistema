@@ -92,7 +92,7 @@
 <div class="flex justify-between items-center mb-6">
 <h3 class="text-lg font-bold font-headline text-on-background">Faturamento por mês</h3>
 <button class="text-on-surface-variant hover:text-primary-container transition-colors flex items-center gap-1 text-sm font-medium bg-surface-container-low px-3 py-1.5 rounded-full">
-                                2024
+                                2026
                                 <span class="material-symbols-outlined text-sm">expand_more</span>
 </button>
 </div>
