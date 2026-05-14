@@ -1,6 +1,7 @@
-<?php include 'partials/header.php'; ?>
-<?php require __DIR__ . '/partials/sidebar.php'; ?>
-
+<?php
+require __DIR__ . '/../layouts/header.php';
+require __DIR__ . '/../layouts/sidebar.php';
+?>
 <!-- Page Content Canvas -->
 <div class="pt-20 px-8 pb-12 w-full max-w-7xl mx-auto">
 

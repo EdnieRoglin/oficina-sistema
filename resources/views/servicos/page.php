@@ -1,8 +1,6 @@
 <?php
 require __DIR__ . '/../layouts/header.php';
 require __DIR__ . '/../layouts/sidebar.php';
-
-
 ?>
 
 <div class="pt-20 px-8 pb-12 w-full max-w-7xl mx-auto">
@@ -23,6 +21,7 @@ require __DIR__ . '/../layouts/sidebar.php';
         </div>
 
         <button
+            onclick="document.getElementById('modal-container').classList.remove('hidden')"
             class="bg-primary-container hover:bg-amber-500 text-on-primary-container font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-lg shadow-amber-500/10 transition-all active:scale-95 group"
         >
             <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">
@@ -33,7 +32,6 @@ require __DIR__ . '/../layouts/sidebar.php';
             </span>
         </button>
     </div>
-
     <!-- Dashboard Style Stats Grid (Bento) -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
         <!-- Card 1 -->
@@ -41,13 +39,12 @@ require __DIR__ . '/../layouts/sidebar.php';
             <span class="text-on-surface-variant font-label text-xs uppercase tracking-widest font-semibold">
                 Total de Serviços
             </span>
-            <span class="text-3xl font-headline font-extrabold text-on-surface">128</span>
+            <span class="text-3xl font-headline font-extrabold text-on-surface"><?= count($servicos) ?></span>
             <div class="flex items-center gap-1 text-tertiary text-xs">
                 <span class="material-symbols-outlined text-sm">trending_up</span>
                 <span>4 novos este mês</span>
             </div>
         </div>
-
         <!-- Card 2 -->
         <div class="bg-surface-container-lowest p-6 rounded-xl shadow-sm flex flex-col gap-2 border border-outline-variant/10">
             <span class="text-on-surface-variant font-label text-xs uppercase tracking-widest font-semibold">
@@ -127,7 +124,7 @@ require __DIR__ . '/../layouts/sidebar.php';
 </div>
 </td>
 <td class="px-6 py-5">
-    <span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold uppercase tracking-tight">Elétrica</span>
+    <span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold uppercase tracking-tight"><?= htmlspecialchars($servico['nome_categoria'] ?? 'Sem categoria') ?></span>
 </td>
 <td class="px-6 py-5">
     <span class="font-headline font-bold text-on-surface">R$ <?= number_format($servico['preco'], 2, ',', '.') ?></span>
@@ -141,17 +138,20 @@ require __DIR__ . '/../layouts/sidebar.php';
     </div>
 </td>
 <td class="px-6 py-5 text-right">
-<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
-<span class="material-symbols-outlined" data-icon="edit">edit</span>
-</button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90">
+                                <span class="material-symbols-outlined">edit_square</span>
+                            </button>
+<a href="/oficina-sistema/public/servicos/excluir?id=<?= $servico['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir este serviço?')" class="p-2 hover:bg-error/10 rounded-lg text-error transition-colors active:scale-90 inline-flex">
+                                <span class="material-symbols-outlined">delete_sweep</span>
+                            </a>
 </td>
 </tr>
+
+        <?php endforeach; ?>
+
                 </tbody>
             </table>
         </div>
-        
-
-        <?php endforeach; ?>
 
         <!-- Pagination -->
         <div class="p-4 bg-surface-container-low/20 border-t border-outline-variant/10 flex items-center justify-between">
@@ -169,7 +169,9 @@ require __DIR__ . '/../layouts/sidebar.php';
     </div>
 </div>
 
-<div id="modal-container"></div>
+<div id="modal-container" class="hidden">
+    <?php include __DIR__ . '/form.php'; ?>
+</div>
 
     
 

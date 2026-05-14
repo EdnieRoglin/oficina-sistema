@@ -12,6 +12,7 @@ $router = new Router();
 $router->get('/', 'DashboardController@index');
 $router->get('/dashboard', 'DashboardController@index');
 $router->get('/servicos', 'ServicoController@index');
+$router->get('/servicos/excluir', 'ServicoController@excluir');
 $router->get('/clientes', 'ClienteController@index');
 $router->get('/kanban', 'KanbanController@index');
 

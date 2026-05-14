@@ -1,8 +1,7 @@
-<?php $title = 'categorias'; ?>
-
-<?php include 'partials/header.php'; ?>
-
-<?php require __DIR__ . '/partials/sidebar.php'; ?>
+<?php
+require __DIR__ . '/../layouts/header.php';
+require __DIR__ . '/../layouts/sidebar.php';
+?>
 
 <!-- Content Area -->
 <div class="mt-16 p-8 flex-1 overflow-y-auto space-y-8 bg-surface">
