@@ -17,8 +17,7 @@ require __DIR__ . '/../layouts/sidebar.php';
         </div>
 
         <button
-            hx-get="partials/modal_pecas.php"
-            hx-target="#modal-container"
+            onclick="abrirModalNovo()";
             class="bg-primary-container hover:bg-amber-500 text-on-primary-container font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-lg shadow-amber-500/10 transition-all active:scale-95 group">
 
             <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">
@@ -72,7 +71,7 @@ require __DIR__ . '/../layouts/sidebar.php';
             </thead>
 
             <tbody class="divide-y divide-surface-container-high">
-
+            <?php foreach($pecas as $peca):?>
                 <!-- Row 1 -->
                 <tr class="hover:bg-surface-container-low/50 transition-colors group">
                     <td class="px-8 py-6">
@@ -81,20 +80,20 @@ require __DIR__ . '/../layouts/sidebar.php';
                                 <span class="material-symbols-outlined">settings_input_component</span>
                             </div>
                             <div>
-                                <div class="font-bold text-on-surface font-headline">Pastilha de Freio Cerâmica</div>
-                                <div class="text-xs text-on-surface-variant font-medium">Sistema de Frenagem Premium</div>
+                                <div class="font-bold text-on-surface font-headline"><?= htmlspecialchars($peca['nome'])?></div>
+                                <div class="text-xs text-on-surface-variant font-medium"><?= htmlspecialchars($peca['observacao'])?></div>
                             </div>
                         </div>
                     </td>
 
                     <td class="px-6 py-6">
                         <span class="font-mono text-sm bg-surface-container-high px-2 py-1 rounded text-on-surface-variant font-semibold tracking-tight">
-                            BRK-5520-CR
+                            <?= htmlspecialchars($peca['codigo'])?>
                         </span>
                     </td>
 
                     <td class="px-6 py-6 text-right">
-                        <div class="font-bold text-on-surface font-headline">R$ 489,00</div>
+                        <div class="font-bold text-on-surface font-headline"> R$ <?= number_format($peca['preco_venda'], 2, ',', '.')?></div>
                         <div class="text-[10px] text-primary font-bold uppercase">Preço Atelier</div>
                     </td>
 
@@ -106,36 +105,48 @@ require __DIR__ . '/../layouts/sidebar.php';
 
                     <td class="px-8 py-6 text-right">
                         <div class="flex justify-end gap-2">
-                            <button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90">
+                            <button 
+                                onclick="abrirModalEditar(this)"
+                                data-id="<?= $peca['id'] ?>"
+                                data-nome="<?= htmlspecialchars($peca['nome']) ?>"
+                                data-codigo="<?= htmlspecialchars($peca['codigo'] ?? '') ?>"
+                                data-categoria-id="<?= $peca['categoria_id'] ?>"
+                                data-marca="<?= htmlspecialchars($peca['marca'])?>"
+                                data-preco-custo="<?= $peca['preco_custo'] ?>"
+                                data-preco-venda="<?= $peca['preco_venda']?>"
+                                data-quantidade="<?= $peca['quantidade']?>"
+                                data-observacao="<?= htmlspecialchars($peca['observacao'] ?? '') ?>"
+                                class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90"
+>
                                 <span class="material-symbols-outlined">edit_square</span>
                             </button>
-                            <button class="p-2 hover:bg-error/10 rounded-lg text-error transition-colors active:scale-90">
+                            <a href="/oficina-sistema/public/pecas/excluir?id=<?= $peca['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir esta peça?')" class="p-2 hover:bg-error/10 rounded-lg text-error transition-colors active:scale-90 inline-flex">
                                 <span class="material-symbols-outlined">delete_sweep</span>
-                            </button>
+                            </a>
                         </div>
                     </td>
                 </tr>
 
                 <!-- (demais linhas seguem o mesmo padrão, já organizadas) -->
-
+                <?php endforeach?>
             </tbody>
         </table>
 
         <!-- Pagination Footer -->
-        <div class="px-8 py-6 bg-surface-container-low flex justify-between items-center border-t border-outline-variant/10">
-            <p class="text-xs font-semibold text-on-surface-variant">
-                Exibindo 4 de 128 itens cadastrados
+        <div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
+            <p class="text-xs text-on-surface-variant font-medium">
+                Mostrando <strong>1 - 10</strong> de 128 registros
             </p>
 
-            <div class="flex gap-1">
-                <button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant transition-colors">
-                    <span class="material-symbols-outlined">chevron_left</span>
+            <div class="flex gap-2">
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold disabled:opacity-50" disabled>
+                    Anterior
                 </button>
-                <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary-container text-on-primary-container font-bold">1</button>
-                <button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant font-bold">2</button>
-                <button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant font-bold">3</button>
-                <button class="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-surface-container-high text-on-surface-variant transition-colors">
-                    <span class="material-symbols-outlined">chevron_right</span>
+                <button class="px-3 py-1 rounded-lg bg-primary-container text-on-primary-container text-xs font-bold">1</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">2</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">3</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">
+                    Próximo
                 </button>
             </div>
         </div>
@@ -146,6 +157,37 @@ require __DIR__ . '/../layouts/sidebar.php';
     <!-- mobile nav -->
 </nav>
 
-<div id="modal-container"></div>
-</body>
-</html>
+<div id="modal-container" class="hidden">
+    <?php include __DIR__ . '/form.php'; ?>
+</div>
+
+
+
+<script>
+function abrirModalNovo() {
+    var form = document.getElementById('pecas-registration-form');
+    form.reset();
+    form.action = '/oficina-sistema/public/pecas/adicionar';
+    document.getElementById('peca-id').value = '';
+    document.getElementById('modal-titulo').textContent = 'Cadastrar Peça';
+    document.getElementById('modal-btn-texto').textContent = 'Confirmar Cadastro';
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+
+function abrirModalEditar(btn) {
+    var form = document.getElementById('pecas-registration-form');
+    form.action = '/oficina-sistema/public/pecas/editar';
+    document.getElementById('peca-id').value = btn.dataset.id;
+    form.querySelector('[name="nome"]').value = btn.dataset.nome;
+    form.querySelector('[name="codigo"]').value = btn.dataset.codigo;
+    form.querySelector('[name="categoria_id"]').value = btn.dataset.categoriaId;
+    form.querySelector('[name="marca"]').value = btn.dataset.marca;
+    form.querySelector('[name="preco_custo"]').value = btn.dataset.precoCusto;
+    form.querySelector('[name="preco_venda"]').value = btn.dataset.precoVenda;
+    form.querySelector('[name="quantidade"]').value = btn.dataset.quantidade;
+    form.querySelector('[name="observacao"]').value = btn.dataset.observacao;
+    document.getElementById('modal-titulo').textContent = 'Editar Peça';
+    document.getElementById('modal-btn-texto').textContent = 'Salvar Alterações';
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+</script>

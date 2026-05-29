@@ -8,7 +8,7 @@
 
         <div class="bg-slate-900 px-8 py-6 flex items-center justify-between">
             <div>
-                <h4 class="text-white text-xl font-bold">Cadastrar Novo Cliente</h4>
+                <h4 id="modal-titulo" class="text-white text-xl font-bold">Cadastrar Novo Cliente</h4>
                 <p class="text-slate-400 text-xs uppercase tracking-widest mt-1">
                     Preencha os campos técnicos abaixo
                 </p>
@@ -25,6 +25,10 @@
         <div class="p-8 grid grid-cols-1 md:grid-cols-2 gap-10">
 
             <!-- Column 1: Personal Data -->
+        <form class="p-8 space-y-8" id="clientes-registration-form" method="POST" action="/oficina-sistema/public/clientes/adicionar">
+
+            <input type="hidden" name="id" id="cliente-id" value=""/>
+
             <div class="space-y-6">
 
                 <div class="flex items-center gap-3 mb-4 text-amber-500">
@@ -42,8 +46,10 @@
                         </label>
                         <input
                             type="text"
+                            name = 'nome'
                             placeholder="Ex: João da Silva Santos"
                             class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-amber-500 rounded-t px-4 py-3 outline-none transition-all text-sm"
+                            required
                         />
                     </div>
 
@@ -65,8 +71,10 @@
                             </label>
                             <input
                                 type="text"
+                                name = 'cpf_cnpj'
                                 placeholder="000.000.000-00"
                                 class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-amber-500 rounded-t px-4 py-3 outline-none transition-all text-sm"
+                                required
                             />
                         </div>
 
@@ -99,8 +107,10 @@
                                 </span>
                                 <input
                                     type="text"
+                                    name = 'telefone'
                                     placeholder="(00) 00000-0000"
                                     class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-amber-500 rounded-t pl-10 pr-4 py-3 outline-none transition-all text-sm"
+                                    required
                                 />
                             </div>
                         </div>
@@ -111,8 +121,10 @@
                             </label>
                             <input
                                 type="email"
+                                name = 'email'
                                 placeholder="contato@exemplo.com"
                                 class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-amber-500 rounded-t px-4 py-3 outline-none transition-all text-sm"
+                                required
                             />
                         </div>
 
@@ -124,8 +136,10 @@
                         </label>
                         <input
                             type="text"
+                            name = 'endereco'
                             placeholder="Rua, Avenida, Praça, nº"
                             class="w-full bg-surface-container-high border-b-2 border-outline-variant focus:border-amber-500 rounded-t px-4 py-3 outline-none transition-all text-sm"
+                            required
                         />
                     </div>
 
@@ -146,14 +160,18 @@
             </button>
 
             <button class="bg-gradient-to-br from-primary to-primary-container px-10 py-3 rounded-xl font-bold text-white shadow-lg shadow-amber-500/30 active:scale-95 transition-all">
-                Salvar Cliente
+                <span id="modal-btn-texto">Confirmar Cadastro</span>
             </button>
 
         </div>
 
+</form>
+
     </div>
 
 </div>
+
+
 
 <!-- Floating Action Summary (Industrial Feel) -->
 <div class="fixed bottom-8 right-8 z-50 flex flex-col gap-4">

@@ -1,8 +1,7 @@
-<?php $title = 'kanban'; ?>
-
-<?php include 'partials/header.php'; ?>
-
-<?php require __DIR__ . '/partials/sidebar.php'; ?>
+<?php
+require __DIR__ . '/../layouts/header.php';
+require __DIR__ . '/../layouts/sidebar.php';
+?>
 
 <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.0/Sortable.min.js"></script>
 <!-- Kanban Board Area -->
@@ -24,7 +23,7 @@
 <div class="bg-surface-container-lowest rounded-xl p-4 shadow-[0px_4px_16px_rgba(26,28,30,0.04)] cursor-grab hover:shadow-[0px_8px_24px_rgba(26,28,30,0.08)] transition-all duration-200 border-l-4 border-transparent hover:border-surface-variant group">
 <div class="flex justify-between items-start mb-2">
 <div>
-<h4 class="font-headline font-bold text-on-surface text-base">BRA-2S12</h4>
+<h4 class="font-headline font-bold text-on-surface text-base">ABC da XUXA</h4>
 <p class="font-body text-xs text-on-surface-variant mt-0.5">Toyota Corolla 2.0</p>
 </div>
 <div class="bg-surface-container-high rounded-full w-8 h-8 flex items-center justify-center">

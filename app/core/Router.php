@@ -11,6 +11,11 @@ class Router
         $this->routes['GET'][$uri] = $action;
     }
 
+    public function post(string $uri, string $action): void
+    {
+        $this->routes['POST'][$uri] = $action;
+    }
+
     public function dispatch(string $uri, string $method): void
     {
         if (!isset($this->routes[$method][$uri])) {

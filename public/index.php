@@ -11,9 +11,23 @@ $router = new Router();
 // ROTAS DO SISTEMA
 $router->get('/', 'DashboardController@index');
 $router->get('/dashboard', 'DashboardController@index');
-$router->get('/servicos', 'ServicoController@index');
-$router->get('/servicos/excluir', 'ServicoController@excluir');
 $router->get('/clientes', 'ClienteController@index');
+$router->get('/pecas', 'PecasController@index');
+$router->get('/servicos', 'ServicoController@index');
+$router->get('/veiculos', 'VeiculosController@index');
+$router->get('/veiculos/buscar-clientes', 'VeiculosController@buscarClientes');
+$router->post('/veiculos/adicionar', 'VeiculosController@adicionarVeiculo');
+$router->post('/veiculos/editar', 'VeiculosController@editarVeiculo');
+$router->post('/clientes/adicionar', 'ClientesController@adicionarCliente');
+$router->post('/clientes/editar', 'ClientesController@editarCliente');
+$router->post('/pecas/adicionar', 'PecasController@adicionarPeca');
+$router->post('/pecas/editar', 'PecasController@editarPeca');
+$router->get('/pecas/excluir', 'PecasController@excluir');
+$router->get('/pecas/categorias', 'PecasController@categorias');
+$router->get('/servicos/excluir', 'ServicoController@excluir');
+$router->get('/servicos/categorias', 'ServicoController@listarCategorias');
+$router->post('/servicos/adicionar', 'ServicoController@adicionarServico');
+$router->post('/servicos/editar', 'ServicoController@editarServico');
 $router->get('/kanban', 'KanbanController@index');
 
 // pega a URL digitada

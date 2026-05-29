@@ -1,7 +1,7 @@
-<?php $title = 'clientes'; ?>
-
-<?php include 'partials/header.php'; ?>
-<?php require __DIR__ . '/partials/sidebar.php'; ?>
+<?php
+require __DIR__ . '/../layouts/header.php';
+require __DIR__ . '/../layouts/sidebar.php';
+?>
 
 <!-- Main Content -->
 <div class="pt-20 px-8 pb-12 w-full max-w-7xl mx-auto">
@@ -18,8 +18,7 @@
         </div>
 
         <button
-            hx-get="partials/modal_clientes.php"
-            hx-target="#modal-container"
+            onclick="abrirModalNovo()";
             class="bg-primary-container hover:bg-amber-500 text-on-primary-container font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-lg shadow-amber-500/10 transition-all active:scale-95 group"
         >
             <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">
@@ -39,7 +38,7 @@
             <span class="text-on-surface-variant font-label text-xs uppercase tracking-widest font-semibold">
                 Total de Clientes
             </span>
-            <span class="text-3xl font-headline font-extrabold text-on-surface">128</span>
+            <span class="text-3xl font-headline font-extrabold text-on-surface"><?= count($clientes)?></span>
             <div class="flex items-center gap-1 text-tertiary text-xs">
                 <span class="material-symbols-outlined text-sm">trending_up</span>
                 <span>4 novos este mês</span>
@@ -110,20 +109,21 @@
                 <tbody class="divide-y divide-outline-variant/10">
                     <!-- (linhas mantidas exatamente como enviadas, apenas formatadas) -->
                     <!-- Row 2 -->
+                     <?php foreach ($clientes as $cliente):?>
 <tr class="hover:bg-surface-container-low/50 transition-colors group">
 <td class="px-6 py-5">
-<p class="font-bold text-slate-900">Transportes Veloz Ltda</p>
-<p class="text-xs text-on-surface-variant font-mono">12.345.678/0001-99</p>
+<p class="font-bold text-slate-900"><?= htmlspecialchars($cliente['nome'])?></p>
+<p class="text-xs text-on-surface-variant font-mono"><?= htmlspecialchars($cliente['cpf_cnpj'])?></p>
 </td>
 <td class="px-6 py-5">
 <div class="flex flex-col gap-1">
 <span class="flex items-center gap-2 text-xs font-medium text-slate-600">
 <span class="material-symbols-outlined text-amber-500 text-sm" data-icon="chat">chat</span>
-                                        (11) 3344-5566
+                                        <?= htmlspecialchars($cliente['telefone'])?>
                                     </span>
 <span class="flex items-center gap-2 text-xs font-medium text-slate-600">
 <span class="material-symbols-outlined text-slate-400 text-sm" data-icon="mail">mail</span>
-                                        contato@veloz.com.br
+                                        <?= htmlspecialchars($cliente['email'])?>
                                     </span>
 </div>
 </td>
@@ -139,20 +139,28 @@
 <span class="font-manrope font-bold text-tertiary">R$ 15.890,20</span>
 </div>
 </td>
-<td class="px-6 py-5 text-center">
-<span class="bg-amber-100 text-amber-700 text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-full inline-block">Pendente</span>
-</td>
+
 <td class="px-6 py-5 text-right">
 <div class="flex items-center justify-end gap-2">
-<button class="p-2 hover:bg-amber-50 rounded-lg text-slate-400 hover:text-amber-500 transition-all">
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90">
 <span class="material-symbols-outlined" data-icon="history">history</span>
 </button>
-<button class="p-2 hover:bg-amber-50 rounded-lg text-slate-400 hover:text-amber-500 transition-all">
-<span class="material-symbols-outlined" data-icon="edit">edit</span>
+<button 
+    onclick="abrirModalEditar(this)"
+    data-id="<?= $cliente['id'] ?>"
+    data-nome="<?= htmlspecialchars($cliente['nome']) ?>"
+    data-cpf-cnpj="<?= htmlspecialchars($cliente['cpf_cnpj'] ?? '') ?>"
+    data-cpf_cnpj="<?= htmlspecialchars($cliente['telefone'])?>"
+    data-email="<?= $cliente['email'] ?>"
+    data-endereco="<?= htmlspecialchars($cliente['endereco'])?>"
+    class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90">
+<span class="material-symbols-outlined">edit_square</span>
 </button>
 </div>
 </td>
 </tr>
+
+                        <?php endforeach ?>
                 </tbody>
             </table>
         </div>
@@ -177,5 +185,34 @@
         </div>
     </div>
 
-    <div id="modal-container"></div>
 </div>
+
+<div id="modal-container" class="hidden">
+    <?php include __DIR__ . '/form.php'; ?>
+</div>
+
+<script>
+function abrirModalNovo() {
+    var form = document.getElementById('clientes-registration-form');
+    form.reset();
+    form.action = '/oficina-sistema/public/clientes/adicionar';
+    document.getElementById('cliente-id').value = '';
+    document.getElementById('modal-titulo').textContent = 'Novo Cliente';
+    document.getElementById('modal-btn-texto').textContent = 'Confirmar Cadastro';
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+
+function abrirModalEditar(btn) {
+    var form = document.getElementById('clientes-registration-form');
+    form.action = '/oficina-sistema/public/clientes/editar';
+    document.getElementById('cliente-id').value = btn.dataset.id;
+    form.querySelector('[name="nome"]').value = btn.dataset.nome;
+    form.querySelector('[name="cpf_cnpj"]').value = btn.dataset.cpf_cnpj;
+    form.querySelector('[name="telefone"]').value = btn.dataset.telefone;
+    form.querySelector('[name="email"]').value = btn.dataset.email;
+    form.querySelector('[name="endereco"]').value = btn.dataset.endereco;
+    document.getElementById('modal-titulo').textContent = 'Editar Cliente';
+    document.getElementById('modal-btn-texto').textContent = 'Salvar Alterações';
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+</script>

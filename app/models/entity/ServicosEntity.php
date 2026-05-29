@@ -1,22 +1,28 @@
 <?php 
 namespace App\Models\Entity;
 
-    class ServicoEntity{
+    class ServicosEntity{
         private $id;
-        private string $nomeServico;
+        private string $nome;
+        private string $codigo;
         private int $categoria_id;
         private float $preco;
         private string $observacao;
 
-        public function __construct(string $nomeServico, int $categoria_id, float $preco, string $observacao){
-            $this->nomeServico = $nomeServico;
+        public function __construct(string $nome, string $codigo, int $categoria_id, float $preco, string $observacao){
+            $this->nome = $nome;
+            $this->codigo= $codigo;
             $this->categoria_id = $categoria_id;
             $this->preco = $preco;
             $this->observacao = $observacao;
         }
 
-        public function getNomeServico(){
-            return $this->nomeServico;
+        public function getNome(){
+            return $this->nome;
+        }
+
+        public function getCodigo(){
+            return $this->codigo;
         }
 
         public function getCategoriaId(){
@@ -31,8 +37,12 @@ namespace App\Models\Entity;
             return $this->observacao;
         }
 
-        public function setNomeServico($nomeServico){
-            $this->nomeServico = $nomeServico;
+        public function setNome($nome){
+            $this->nome = $nome;
+        }
+
+        public function setCodigo($codigo){
+            $this->codigo = $codigo;
         }
 
         public function setCategoriaId($categoria_id){

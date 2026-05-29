@@ -1,7 +1,8 @@
-<?php $title = 'veiculos'; ?>
+<?php
+require __DIR__ . '/../layouts/header.php';
+require __DIR__ . '/../layouts/sidebar.php';
+?>
 
-<?php include 'partials/header.php'; ?>
-<?php require __DIR__ . '/partials/sidebar.php'; ?>
 
 <!-- TopAppBar -->
 <div class="pt-20 px-8 pb-12 w-full max-w-7xl mx-auto">
@@ -19,8 +20,7 @@
         </div>
 
         <button
-            hx-get="partials/modal_veiculos.php"
-            hx-target="#modal-container"
+            onclick="abrirModalNovo()"
             class="bg-primary-container hover:bg-amber-500 text-on-primary-container font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-lg shadow-amber-500/10 transition-all active:scale-95 group">
 
             <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">
@@ -81,31 +81,32 @@
             <tbody class="divide-y divide-surface-container-high">
 
                 <!-- Rows mantidas exatamente iguais, apenas identadas -->
+                 <?php foreach($veiculos as $veiculo):?>
             <!-- Row 2 -->
 <tr class="hover:bg-surface-container-low transition-colors group">
 <td class="px-6 py-5">
 <div class="flex flex-col">
-<span class="font-bold text-on-surface headline">Volkswagen Golf GTI</span>
+<span class="font-bold text-on-surface headline"> <?= htmlspecialchars($veiculo['modelo'])?></span>
 <span class="mt-1 inline-flex items-center justify-center bg-on-background text-white text-[10px] font-bold px-2 py-0.5 rounded-sm tracking-tighter w-fit">
-                                    HTY-9901
+                                    <?= htmlspecialchars($veiculo['placa'])?>
                                 </span>
 </div>
 </td>
 <td class="px-6 py-5">
 <div class="flex items-center gap-2 group/link cursor-pointer">
-<span class="text-sm font-semibold text-on-surface">Fernanda Lima</span>
+<span class="text-sm font-semibold text-on-surface"><?= htmlspecialchars($veiculo['cliente_nome'] ?? 'Sem proprietário') ?></span>
 <span class="material-symbols-outlined text-xs text-primary opacity-0 group-hover/link:opacity-100 transition-opacity">open_in_new</span>
 </div>
 </td>
 <td class="px-6 py-5">
 <div class="text-xs space-y-0.5">
-<p class="text-outline font-medium">2019 • Cinza Nardo</p>
-<p class="text-on-surface font-bold">68.120 KM</p>
+<p class="text-outline font-medium"> <?= htmlspecialchars($veiculo['ano'])?> •  <?= htmlspecialchars($veiculo['cor'])?></p>
+<p class="text-on-surface font-bold"> <?= htmlspecialchars($veiculo['km'])?> km</p>
 </div>
 </td>
 <td class="px-6 py-5">
 <div class="text-xs font-medium text-on-surface-variant">
-                                2.0 TSI • <span class="text-error">Gasolina</span>
+                                <?= htmlspecialchars($veiculo['motorizacao'])?> • <span class="text-error"> <?= htmlspecialchars($veiculo['combustivel'])?></span>
 </div>
 </td>
 <td class="px-6 py-5">
@@ -113,30 +114,100 @@
 </td>
 <td class="px-6 py-5 text-right">
 <div class="flex justify-end gap-1">
-<button class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" title="Novo Orçamento"><span class="material-symbols-outlined text-[20px]">request_quote</span></button>
-<button class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" title="Histórico"><span class="material-symbols-outlined text-[20px]">history</span></button>
-<button class="p-2 text-outline hover:text-primary hover:bg-primary/5 rounded-lg transition-all" title="Editar"><span class="material-symbols-outlined text-[20px]">edit</span></button>
+<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90" title="Novo Orçamento"><span class="material-symbols-outlined">request_quote</span></button>
+<button 
+    onclick="abrirModalEditar(this)"
+    data-id="<?= $veiculo['id'] ?>"
+    data-placa="<?= htmlspecialchars($veiculo['placa']) ?>"
+    data-chassi="<?= htmlspecialchars($veiculo['chassi'] ?? '') ?>"
+    data-motorizacao="<?= htmlspecialchars($veiculo['motorizacao'] ?? '') ?>"
+    data-marca="<?= htmlspecialchars($veiculo['marca']) ?>"
+    data-modelo="<?= htmlspecialchars($veiculo['modelo'] ?? '') ?>"
+    data-ano="<?= htmlspecialchars($veiculo['ano']) ?>"
+    data-km="<?= htmlspecialchars($veiculo['km']) ?>"
+    data-cor="<?= htmlspecialchars($veiculo['cor']) ?>"
+    data-combustivel="<?= htmlspecialchars($veiculo['combustivel'] ?? '') ?>"
+    data-cliente-id="<?= htmlspecialchars($veiculo['cliente_id'] ?? '') ?>"
+    data-cliente-nome="<?= htmlspecialchars($veiculo['cliente_nome'] ?? '') ?>"
+    class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90"
+>
+    <span class="material-symbols-outlined">edit_square</span>
+</button>
 </div>
 </td>
 </tr>
-
+    <?php endforeach?>
             </tbody>
         </table>
 
-        <div class="bg-surface-container px-6 py-4 flex justify-between items-center text-xs text-outline font-medium">
-            <p>Mostrando 3 de 245 veículos</p>
+        <div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
+            <p class="text-xs text-on-surface-variant font-medium">
+                Mostrando <strong>1 - 10</strong> de 128 registros
+            </p>
+
             <div class="flex gap-2">
-                <button class="px-3 py-1 bg-white rounded-md shadow-sm border border-outline-variant/20 hover:bg-zinc-50 transition-colors">
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold disabled:opacity-50" disabled>
                     Anterior
                 </button>
-                <button class="px-3 py-1 bg-white rounded-md shadow-sm border border-outline-variant/20 hover:bg-zinc-50 transition-colors">
+                <button class="px-3 py-1 rounded-lg bg-primary-container text-on-primary-container text-xs font-bold">1</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">2</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">3</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">
                     Próximo
                 </button>
             </div>
-        </div>
+        </div> 
     </div>
 </div>
 
-<div id="modal-container"></div>
-</body>
-</html>
+<div id="modal-container" class="hidden">
+    <?php include __DIR__ . '/form.php'; ?>
+</div>
+
+<script>
+function abrirModalNovo() {
+    var form = document.getElementById('veiculos-registration-form');
+    form.reset();
+    form.action = '/oficina-sistema/public/veiculos/adicionar';
+    document.getElementById('veiculo-id').value = '';
+    document.getElementById('modal-titulo').textContent = 'Cadastrar Veículo';
+    document.getElementById('modal-btn-texto').textContent = 'Confirmar Cadastro';
+
+    // Limpar proprietário selecionado
+    removerProprietario();
+
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+
+function abrirModalEditar(btn) {
+    var form = document.getElementById('veiculos-registration-form');
+    form.action = '/oficina-sistema/public/veiculos/editar';
+    document.getElementById('veiculo-id').value = btn.dataset.id;
+    form.querySelector('[name="placa"]').value = btn.dataset.placa;
+    form.querySelector('[name="chassi"]').value = btn.dataset.chassi || '';   
+    form.querySelector('[name="motorizacao"]').value = btn.dataset.motorizacao || '';
+    form.querySelector('[name="marca"]').value = btn.dataset.marca;
+    form.querySelector('[name="modelo"]').value = btn.dataset.modelo;
+    form.querySelector('[name="ano"]').value = btn.dataset.ano;
+    form.querySelector('[name="km"]').value = btn.dataset.km;
+    form.querySelector('[name="cor"]').value = btn.dataset.cor;
+    form.querySelector('[name="combustivel"]').value = btn.dataset.combustivel || '';
+
+    // Proprietário: setar hidden e mostrar card se tiver
+    var clienteId = btn.dataset.clienteId;
+    var clienteNome = btn.dataset.clienteNome;
+
+    if (clienteId && clienteNome) {
+        document.getElementById('proprietario-id').value = clienteId;
+        document.getElementById('proprietario-nome').textContent = clienteNome;
+        document.getElementById('proprietario-info').textContent = 'ID: ' + clienteId;
+        document.getElementById('proprietario-selecionado').classList.remove('hidden');
+    } else {
+        removerProprietario();
+    }
+
+    document.getElementById('modal-titulo').textContent = 'Editar Veículo';
+    document.getElementById('modal-btn-texto').textContent = 'Salvar Alterações';
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+</script>

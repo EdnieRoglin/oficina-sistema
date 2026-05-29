@@ -1,7 +1,9 @@
 <?php  
-    class Pecas{
+namespace App\Models\entity;
+
+    class PecasEntity{
         private $id;
-        private string $nomePeca;
+        private string $nome;
         private string $codigo;
         private int $categoria_id;
         private string $marca;
@@ -11,20 +13,20 @@
         private int $quantidade;
         private string $observacao;
 
-        public function __construct(string $nomePeca, int $categoria_id, string $codigo, string $marca, float $precoCusto, float $precoVenda, int $quantidade, string $observacao){
-            $this->nomePeca = $nomePeca;
+        public function __construct(string $nome, int $categoria_id, ?string $codigo, ?string $marca, string $status, float $precoCusto, float $precoVenda, int $quantidade, ?string $observacao){
+            $this->nome = $nome;
             $this->categoria_id = $categoria_id;
-            $this->codigo = $codigo;
-            $this->marca = $marca;
-            $this->status = true;
+            $this->codigo = $codigo ?? '';
+            $this->marca = $marca ?? '';
+            $this->status = $status;
             $this->precoCusto = $precoCusto;
             $this->precoVenda = $precoVenda;
             $this->quantidade = $quantidade;
-            $this->observacao = $observacao;
+            $this->observacao = $observacao ?? '';
         }
 
-        public function getNomePeca(){
-            return $this->nomePeca;
+        public function getNome(){
+            return $this->nome;
         }
 
         public function getCategoriaId(){
@@ -59,8 +61,8 @@
             return $this->observacao;
         }
 
-        public function setNomePeca($nomePeca){
-            $this->nomePeca = $nomePeca;
+        public function setNome($nome){
+            $this->nome = $nome;
         }
 
         public function setCategoriaId($categoria_id){

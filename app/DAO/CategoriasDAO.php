@@ -1,7 +1,10 @@
 <?php 
-require_once __DIR__ . '/../models/Categorias.php';
+namespace App\DAO;
 
-    class categoriaDAO{
+use App\Models\Categorias;
+use PDO;
+
+    class CategoriaDAO{
         private PDO $conexao;
 
         public function __construct(PDO $conexao){
@@ -19,5 +22,10 @@ require_once __DIR__ . '/../models/Categorias.php';
             ]);
         }
 
+        public function listarCategorias(){
+            $sql = "SELECT * FROM categorias";
+            $stmt = $this->conexao->query($sql);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        }
     }
 ?>

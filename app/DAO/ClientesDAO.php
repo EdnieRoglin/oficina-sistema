@@ -1,7 +1,9 @@
 <?php 
-require_once __DIR__ . '/../models/Clientes.php';
+namespace App\DAO;
+use App\Models\Entity\ClientesEntity;
+use PDO;
 
-    class ClienteDAO {
+    class ClientesDAO {
         private PDO $conexao;
 
         public function __construct(PDO $conexao){
@@ -26,33 +28,28 @@ require_once __DIR__ . '/../models/Clientes.php';
         public function listarClientes(){
             $sql = "SELECT * FROM clientes";
             $stmt = $this->conexao->query($sql);
-
-            $cliente = $stmt->fetch(PDO::FETCH_ASSOC);
-            return ($cliente ['nome, cpf_cnpj, telefone']);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        public function buscar($termo) {
-        // 1. Preparamos o termo com os wildcards %
+        public function buscarClientes($termo) {
         $busca = "%" . $termo . "%";
 
-        // 2. SQL que varre nome, código e marca
-        $sql = "SELECT p.*, c.nome as nome_categoria 
-                FROM pecas p
-                JOIN categorias c ON p.categoria_id = c.id
-                WHERE p.nome_peca LIKE :busca 
-                OR p.codigo LIKE :busca 
-                OR p.marca LIKE :busca
-                ORDER BY p.nome_peca ASC";
+        $sql = "SELECT id, nome, cpf_cnpj, telefone 
+                FROM clientes
+                WHERE nome LIKE :busca 
+                OR cpf_cnpj LIKE :busca 
+                OR telefone LIKE :busca
+                ORDER BY nome ASC
+                LIMIT 10";
 
         try {
             $stmt = $this->conexao->prepare($sql);
             $stmt->bindParam(':busca', $busca, PDO::PARAM_STR);
             $stmt->execute();
 
-            // Retorna um array de objetos ou arrays associativos
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e) {
-            error_log("Erro na busca: " . $e->getMessage());
+        } catch (\PDOException $e) {
+            error_log("Erro na busca de clientes: " . $e->getMessage());
             return [];
         }
     }

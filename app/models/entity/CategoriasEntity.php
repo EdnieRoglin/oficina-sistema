@@ -1,5 +1,7 @@
 <?php 
-    class Categorias {
+namespace App\Models\entity;
+
+    class CategoriaEntity {
         private $id;
         private string $nome;
         private string $tipo;

@@ -21,7 +21,7 @@ require __DIR__ . '/../layouts/sidebar.php';
         </div>
 
         <button
-            onclick="document.getElementById('modal-container').classList.remove('hidden')"
+            onclick="abrirModalNovo()"
             class="bg-primary-container hover:bg-amber-500 text-on-primary-container font-bold px-8 py-4 rounded-xl flex items-center gap-3 shadow-lg shadow-amber-500/10 transition-all active:scale-95 group"
         >
             <span class="material-symbols-outlined group-hover:rotate-90 transition-transform">
@@ -50,7 +50,7 @@ require __DIR__ . '/../layouts/sidebar.php';
             <span class="text-on-surface-variant font-label text-xs uppercase tracking-widest font-semibold">
                 Ticket Médio
             </span>
-            <span class="text-3xl font-headline font-extrabold text-on-surface">R$ 450,00</span>
+            <span class="text-3xl font-headline font-extrabold text-on-surface"><?= 'R$ ' . number_format($ticketMedio['ticket_medio'], 2, ',', '.') ?></span>
             <div class="flex items-center gap-1 text-on-surface-variant text-xs">
                 <span class="material-symbols-outlined text-sm">info</span>
                 <span>Mão de obra base</span>
@@ -119,12 +119,12 @@ require __DIR__ . '/../layouts/sidebar.php';
 </div>
 <div>
     <p class="text-on-surface font-semibold text-sm"><?= htmlspecialchars($servico['nome']) ?></p>
-    <p class="text-on-surface-variant text-[10px] uppercase font-label">Cod: SERV-042</p>
+    <p class="text-on-surface-variant text-[10px] uppercase font-label">Cod: <?= htmlspecialchars($servico['codigo']) ?></p>
 </div>
 </div>
 </td>
 <td class="px-6 py-5">
-    <span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold uppercase tracking-tight"><?= htmlspecialchars($servico['nome_categoria'] ?? 'Sem categoria') ?></span>
+    <span class="px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed text-[11px] font-bold uppercase tracking-tight"><?= htmlspecialchars($servico['nome_categoria']) ?></span>
 </td>
 <td class="px-6 py-5">
     <span class="font-headline font-bold text-on-surface">R$ <?= number_format($servico['preco'], 2, ',', '.') ?></span>
@@ -138,9 +138,18 @@ require __DIR__ . '/../layouts/sidebar.php';
     </div>
 </td>
 <td class="px-6 py-5 text-right">
-<button class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90">
-                                <span class="material-symbols-outlined">edit_square</span>
-                            </button>
+<button 
+    onclick="abrirModalEditar(this)"
+    data-id="<?= $servico['id'] ?>"
+    data-nome="<?= htmlspecialchars($servico['nome']) ?>"
+    data-codigo="<?= htmlspecialchars($servico['codigo'] ?? '') ?>"
+    data-categoria-id="<?= $servico['categoria_id'] ?>"
+    data-preco="<?= $servico['preco'] ?>"
+    data-observacao="<?= htmlspecialchars($servico['observacao'] ?? '') ?>"
+    class="p-2 hover:bg-surface-container-high rounded-lg text-on-surface-variant transition-colors active:scale-90"
+>
+    <span class="material-symbols-outlined">edit_square</span>
+</button>
 <a href="/oficina-sistema/public/servicos/excluir?id=<?= $servico['id'] ?>" onclick="return confirm('Tem certeza que deseja excluir este serviço?')" class="p-2 hover:bg-error/10 rounded-lg text-error transition-colors active:scale-90 inline-flex">
                                 <span class="material-symbols-outlined">delete_sweep</span>
                             </a>
@@ -153,15 +162,21 @@ require __DIR__ . '/../layouts/sidebar.php';
             </table>
         </div>
 
-        <!-- Pagination -->
-        <div class="p-4 bg-surface-container-low/20 border-t border-outline-variant/10 flex items-center justify-between">
-            <span class="text-xs text-on-surface-variant">Exibindo 1-4 de 128 serviços</span>
-            <div class="flex gap-1">
-                <button class="p-1 rounded bg-surface-container-high text-on-surface active:scale-95 disabled:opacity-50" disabled>
-                    <span class="material-symbols-outlined text-lg">chevron_left</span>
+        <!-- Pagination Footer -->
+        <div class="px-6 py-4 bg-surface-container-low flex items-center justify-between">
+            <p class="text-xs text-on-surface-variant font-medium">
+                Mostrando <strong>1 - 10</strong> de 128 registros
+            </p>
+
+            <div class="flex gap-2">
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold disabled:opacity-50" disabled>
+                    Anterior
                 </button>
-                <button class="p-1 rounded bg-surface-container-high text-on-surface active:scale-95">
-                    <span class="material-symbols-outlined text-lg">chevron_right</span>
+                <button class="px-3 py-1 rounded-lg bg-primary-container text-on-primary-container text-xs font-bold">1</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">2</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">3</button>
+                <button class="px-3 py-1 rounded-lg border border-outline-variant/20 hover:bg-white transition-all text-xs font-bold">
+                    Próximo
                 </button>
             </div>
         </div>
@@ -177,3 +192,28 @@ require __DIR__ . '/../layouts/sidebar.php';
 
 </div>
 
+<script>
+function abrirModalNovo() {
+    var form = document.getElementById('service-registration-form');
+    form.reset();
+    form.action = '/oficina-sistema/public/servicos/adicionar';
+    document.getElementById('servico-id').value = '';
+    document.getElementById('modal-titulo').textContent = 'Cadastrar Serviço';
+    document.getElementById('modal-btn-texto').textContent = 'Confirmar Cadastro';
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+
+function abrirModalEditar(btn) {
+    var form = document.getElementById('service-registration-form');
+    form.action = '/oficina-sistema/public/servicos/editar';
+    document.getElementById('servico-id').value = btn.dataset.id;
+    form.querySelector('[name="nome"]').value = btn.dataset.nome;
+    form.querySelector('[name="codigo"]').value = btn.dataset.codigo;
+    form.querySelector('[name="categoria_id"]').value = btn.dataset.categoriaId;
+    form.querySelector('[name="preco"]').value = btn.dataset.preco;
+    form.querySelector('[name="observacao"]').value = btn.dataset.observacao;
+    document.getElementById('modal-titulo').textContent = 'Editar Serviço';
+    document.getElementById('modal-btn-texto').textContent = 'Salvar Alterações';
+    document.getElementById('modal-container').classList.remove('hidden');
+}
+</script>

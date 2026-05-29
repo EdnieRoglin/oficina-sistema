@@ -1,5 +1,7 @@
 <?php 
-    class Clientes {
+namespace App\Models\entity;
+
+    class ClientesEntity {
         private $id;
         private string $nome;
         private string $tipoPessoa;

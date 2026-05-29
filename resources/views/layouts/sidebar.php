@@ -15,15 +15,15 @@
     <nav class="flex-1 flex flex-col gap-1 mt-4">
     <?php
     $menus = [
-        ['route' => '/dashboard', 'key'=>'dashboard', 'label' => 'Dashboard', 'icon' => 'dashboard'],
-        ['route' => '/orcamento', 'key'=>'orcamento', 'label' => 'Orçamento', 'icon' => 'request_quote'],
-        ['route' => '/clientes',  'key'=>'clientes',  'label' => 'Clientes',  'icon' => 'person'],
-        ['route' => '/servicos',  'key'=>'servicos',  'label' => 'Serviços',  'icon' => 'build'],
-        ['route' => '/pecas',     'key'=>'pecas',     'label' => 'Peças',     'icon' => 'inventory_2'],
-        ['route' => '/veiculos',  'key'=>'veiculos',  'label' => 'Veículos',  'icon' => 'directions_car'],
-        ['route' => '/kanban',    'key'=>'kanban',    'label' => 'Quadro',    'icon' => 'view_kanban'],
-        ['route' => '/categorias','key'=>'categorias','label' => 'Categorias','icon' => 'category'],
-        ['route' => '/historico', 'key'=>'historico', 'label' => 'Histórico', 'icon' => 'history'],
+        ['route' => '/oficina-sistema/public/dashboard', 'key'=>'dashboard', 'label' => 'Dashboard', 'icon' => 'dashboard'],
+        ['route' => '/oficina-sistema/public/orcamento', 'key'=>'orcamento', 'label' => 'Orçamento', 'icon' => 'request_quote'],
+        ['route' => '/oficina-sistema/public/clientes',  'key'=>'clientes',  'label' => 'Clientes',  'icon' => 'person'],
+        ['route' => '/oficina-sistema/public/servicos',  'key'=>'servicos',  'label' => 'Serviços',  'icon' => 'build'],
+        ['route' => '/oficina-sistema/public/pecas',     'key'=>'pecas',     'label' => 'Peças',     'icon' => 'inventory_2'],
+        ['route' => '/oficina-sistema/public/veiculos',  'key'=>'veiculos',  'label' => 'Veículos',  'icon' => 'directions_car'],
+        ['route' => '/oficina-sistema/public/kanban',    'key'=>'kanban',    'label' => 'Quadro',    'icon' => 'view_kanban'],
+        ['route' => '/oficina-sistema/public/categorias','key'=>'categorias','label' => 'Categorias','icon' => 'category'],
+        ['route' => '/oficina-sistema/public/historico', 'key'=>'historico', 'label' => 'Histórico', 'icon' => 'history'],
     ];
 
     foreach ($menus as $menu):
@@ -32,7 +32,7 @@
         <a 
            href="<?= $menu['route'] ?>"
            class="<?= $isActive ? 'bg-amber-100 text-amber-700' : 'text-slate-500 hover:bg-slate-200' ?>
-                  rounded-lg px-4 py-3 flex items-center gap-3 transition-transform hover:translate-x-1">
+                   rounded-lg px-4 py-3 flex items-center gap-3 transition-transform hover:translate-x-1">
 
             <span class="material-symbols-outlined"><?= $menu['icon'] ?></span>
             <span class="uppercase tracking-wider text-xs font-semibold">
@@ -43,7 +43,7 @@
     </nav>
 
     <div class="mt-auto pt-4 border-t border-slate-200">
-        <a href="/logout"
+        <a href="/oficina-sistema/public/logout"
            class="w-full text-slate-500 hover:bg-slate-200 rounded-lg px-4 py-3 flex items-center gap-3 transition-transform hover:translate-x-1">
             <span class="material-symbols-outlined">logout</span>
             <span class="uppercase tracking-wider text-xs font-semibold">Sair</span>
